@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Component
+metadata:
+  name: adp-demo
+spec:
+  class: SAAS
+  category: SAAS
+  description: This is an application demo for ADP
+  parentComponent: true
+  provider: ""
+  appVersion: 1.16.0
+  images:
+  - registry: registry.cn-hangzhou.aliyuncs.com
+    repository: adp-demo/adp-demo
+    tag: v0.1
+    managedImage: registry.cn-hangzhou.aliyuncs.com/adp-demo/adp-demo:v0.1
+  - registry: ""
+    repository: busybox
+    tag: latest
+    managedImage: busybox
+  namespaces:
+  - adpdemo
+  singleton: false
+  public: false
+  children: []
+  readme: ""
+  version: 0.1.0
+  values: |
+    affinity: {}
+    autoscaling:
+      enabled: true
+      maxReplicas: 100
+      minReplicas: 1
+      targetCPUUtilizationPercentage: 80
+    fullnameOverride: ""
+    image:
+      pullPolicy: IfNotPresent
+      repository: registry.cn-hangzhou.aliyuncs.com/adp-demo/adp-demo
+      tag: v0.1
+    imagePullSecrets: []
+    ingress:
+      annotations: {}
+      enabled: false
+      hosts:
+      - host: chart-example.local
+        paths: []
+      tls: []
+    nameOverride: ""
+    nodeSelector: {}
+    podAnnotations: {}
+    podSecurityContext: {}
+    replicaCount: 1
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 1280Mi
+      requests:
+        cpu: 1000m
+        memory: 1280Mi
+    securityContext: {}
+    service:
+      port: 18080
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: true
+      name: ""
+    tolerations: []
+  platforms: []
