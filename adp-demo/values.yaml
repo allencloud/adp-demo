@@ -73,3 +73,11 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+MYSQL_USERNAME: shlallen
+MYSQL_PASSWORD: CloudPoC123
+MYSQL_HOST: shlallen.mysql.polardb.rds.aliyuncs.com
+MYSQL_PORT: 3306
+
+REDIS_ADDRESS: r-bp1iiwn0xeq3hef1g7pd.redis.rds.aliyuncs.com:6379
+REDIS_PASSWORD: CloudPoC123
