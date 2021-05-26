@@ -18,13 +18,17 @@ spec:
     repository: adp-demo/adp-demo
     tag: v0.1
     managedImage: registry.cn-hangzhou.aliyuncs.com/adp-demo/adp-demo:v0.1
+  - registry: registry.cn-hangzhou.aliyuncs.com
+    repository: adp-demo/adp-demo
+    tag: v0.2
+    managedImage: registry.cn-hangzhou.aliyuncs.com/adp-demo/adp-demo:v0.2
   namespaces:
   - adp-demo
   singleton: false
   public: false
   children: []
   readme: ""
-  version: 0.1.7
+  version: 0.1.8
   values: |
     MYSQL_HOST: shlallen.mysql.polardb.rds.aliyuncs.com
     MYSQL_PASSWORD: CloudPoC123
@@ -42,7 +46,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: registry.cn-hangzhou.aliyuncs.com/adp-demo/adp-demo
-      tag: v0.1
+      tag: v0.2
     imagePullSecrets: []
     ingress:
       annotations: {}
