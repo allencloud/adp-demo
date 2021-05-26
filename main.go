@@ -64,6 +64,10 @@ func connectMySQL() {
 	if err := db.Ping(); err != nil {
 		logrus.Fatal(err)
 	}
+	logrus.Infof("succeeded in connecting mysql tcp(%s:%s)",
+		dbConfig.Host,
+		dbConfig.Port,
+	)
 }
 
 func ping(res http.ResponseWriter, req *http.Request) {

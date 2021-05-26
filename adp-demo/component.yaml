@@ -10,22 +10,28 @@ spec:
   provider: ""
   appVersion: 1.16.0
   images:
-  - registry: registry.cn-hangzhou.aliyuncs.com
-    repository: adp-demo/adp-demo
-    tag: v0.1
-    managedImage: registry.cn-hangzhou.aliyuncs.com/adp-demo/adp-demo:v0.1
   - registry: ""
     repository: busybox
     tag: latest
     managedImage: busybox
+  - registry: registry.cn-hangzhou.aliyuncs.com
+    repository: adp-demo/adp-demo
+    tag: v0.1
+    managedImage: registry.cn-hangzhou.aliyuncs.com/adp-demo/adp-demo:v0.1
   namespaces:
-  - adpdemo
+  - adp-demo
   singleton: false
   public: false
   children: []
   readme: ""
-  version: 0.1.0
+  version: 0.1.7
   values: |
+    MYSQL_HOST: shlallen.mysql.polardb.rds.aliyuncs.com
+    MYSQL_PASSWORD: CloudPoC123
+    MYSQL_PORT: "3306"
+    MYSQL_USERNAME: shlallen
+    REDIS_ADDRESS: r-bp1iiwn0xeq3hef1g7pd.redis.rds.aliyuncs.com:6379
+    REDIS_PASSWORD: CloudPoC123
     affinity: {}
     autoscaling:
       enabled: true

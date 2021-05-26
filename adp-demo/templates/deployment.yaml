@@ -28,56 +28,30 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          env:          
-            - name: "MYSQL_USERNAME"
-              valueFrom:
-                secretKeyRef:
-                  key:  MYSQL_USERNAME
-                  name: {{ .Chart.Name }}-auth
-            - name: "MYSQL_PASSWORD"
-              valueFrom:
-                secretKeyRef:
-                  key:  MYSQL_PASSWORD
-                  name: {{ .Chart.Name }}-auth
-            - name: "MYSQL_HOST"
-              valueFrom:
-                secretKeyRef:
-                  key:  MYSQL_HOST
-                  name: {{ .Chart.Name }}-auth
-            - name: "MYSQL_PORT"
-              valueFrom:
-                secretKeyRef:
-                  key:  MYSQL_PORT
-                  name: {{ .Chart.Name }}-auth
-            - name: "REDIS_ADDRESS"
-              valueFrom:
-                secretKeyRef:
-                  key:  REDIS_ADDRESS
-                  name: {{ .Chart.Name }}-auth
-            - name: "REDIS_PASSWORD"
-              valueFrom:
-                secretKeyRef:
-                  key:  REDIS_PASSWORD
-                  name: {{ .Chart.Name }}-auth
+      - name: {{ .Chart.Name }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 18080
+          protocol: TCP
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        env:          
+        - name: MYSQL_USERNAME
+          value: {{ .Values.MYSQL_USERNAME }}
+        - name: MYSQL_PASSWORD
+          value: {{ .Values.MYSQL_PASSWORD }}
+        - name: MYSQL_HOST
+          value: {{ .Values.MYSQL_HOST }}
+        - name: MYSQL_PORT
+          value: "{{ .Values.MYSQL_PORT }}"
+        - name: REDIS_ADDRESS
+          value: {{ .Values.REDIS_ADDRESS }}
+        - name: REDIS_PASSWORD
+          value: {{ .Values.REDIS_PASSWORD }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
